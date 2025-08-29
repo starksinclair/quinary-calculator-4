@@ -1,7 +1,7 @@
 {
   "name": "quinary-calculator-4",
   "version": "1.0.0",
-  "description": "",
+  "description": "Quinary Calculator",
   "homepage": "https://github.com/starksinclair/quinary-calculator-4#readme",
   "bugs": {
     "url": "https://github.com/starksinclair/quinary-calculator-4/issues"
@@ -11,10 +11,24 @@
     "url": "git+https://github.com/starksinclair/quinary-calculator-4.git"
   },
   "license": "ISC",
-  "author": "",
+  "author": "Quinary Calculator Team",
   "type": "commonjs",
-  "main": "index.js",
+  "main": "js/logic.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  }
+    "test": "mocha tests/*.test.js",
+    "test:ci": "mocha tests/*.test.js --reporter spec"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "devDependencies": {
+    "mocha": "^10.2.0"
+  },
+  "keywords": [
+    "quinary",
+    "calculator",
+    "base-5",
+    "arithmetic",
+    "logic"
+  ]
 }
