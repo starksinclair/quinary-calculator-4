@@ -2,9 +2,48 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <title>Quinary Calc</title>
 </head>
 <body>
+
+    <script src="js/app.js"></script>
+
+
+    <div class = "Calc">
+
+        <!--Display-->
+        <div id="display">
+            <div id="Qdisplay">Quinary: 0</div><!--temp placeholder Num-->
+            <div id="Ddisplay" style="display: none;">Decimal: 0</div>
+            <div id="extraPadding"></div><!--just a lil extra room-->
+        </div><!--endDisplay-->
+
+
+        <!--toggle Button-->
+        <button id="toggleDisplay">Toggle Output</button>
+
+        <!--DealingWithNumbersBaby-->
+        <div class="numberButtz">
+            <br>
+            <button class="numButton">0</button>
+            <button class="numButton">1</button>
+            <button class="numButton">2</button>
+            <br>
+            <button class="numButton">3</button>
+            <button class="numButton">4</button>
+        </div><!--endNumberButtz-->
+
+        <!--ClearButton-->
+        <br>
+        <button id="clear-btn">Clear</button>
+
+    </div><!--endCalcClass-->
+
+    <div class="imageArea">
+        <img id="catPic", src="/otherAssets/DoNOTDelete.jpg", alt="cat pic", width="500", height="500">
+    </div>
+
 
 </body>
 </html>
