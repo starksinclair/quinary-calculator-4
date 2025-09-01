@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const DeltaOpactiy = 0.05;
     catPicture.style.opacity=0; //pre-game var
     let counterForSecret = 0;
+    let trademarked=false;
     //can rid off
 
 
@@ -74,11 +75,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
     function updateCatPicture(){
-        if(counterForSecret>=5){
-            console.log(counterForSecret);
+        if(counterForSecret>=20){
             let currentOpacity = parseFloat(catPicture.style.opacity);
             if(currentOpacity>=1.0){
+                if(!trademarked){
                 console.log("Trademarked by CS495 Students, do not distribute");
+                trademarked=true;
+                }
             } else{
                 let newOpactiy = currentOpacity+DeltaOpactiy;
                 catPicture.style.opacity = newOpactiy.toString();
