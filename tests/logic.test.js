@@ -218,4 +218,47 @@ describe('Quinary Calculator Logic Tests', function() {
       });
     });
   });
+
+  describe('Addition and Subtraction Functions', function() {
+
+    describe('addQuinary', function() {
+
+      it("should add simple numbers", function () {
+        assert.strictEqual(quinaryLogic.addQuinary("1", "1"), "2");
+        assert.strictEqual(quinaryLogic.addQuinary("2", "3"), "10");
+        assert.strictEqual(quinaryLogic.addQuinary("14", "3"), "22");
+      });
+
+      it("should handle carries", function () {
+        assert.strictEqual(quinaryLogic.addQuinary("4", "4"), "13");
+        assert.strictEqual(quinaryLogic.addQuinary("24", "13"), "42");
+      });
+
+      it('should throw error for invalid quinary input', function() {
+        assert.throws(() => {
+          quinaryLogic.addQuinary('5', '3');
+        }, /Invalid quinary input/);
+      });
+    });
+
+    describe('subtractQuinary', function() {
+
+      it("should subtract simple numbers", function () {
+        assert.strictEqual(quinaryLogic.subtractQuinary("2", "1"), "1");
+        assert.strictEqual(quinaryLogic.subtractQuinary("10", "3"), "2");
+        assert.strictEqual(quinaryLogic.subtractQuinary("22", "3"), "14");
+      });
+
+      it("should handle borrowing", function () {
+        assert.strictEqual(quinaryLogic.subtractQuinary("13", "4"), "4");
+        assert.strictEqual(quinaryLogic.subtractQuinary("100", "1"), "44");
+      });
+
+      it('should throw error for invalid quinary input', function() {
+        assert.throws(() => {
+          quinaryLogic.subtractQuinary('5', '3');
+        }, /Invalid quinary input/);
+      });
+    });
+  });
 });
