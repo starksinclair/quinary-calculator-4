@@ -22,6 +22,30 @@ function isValidQuinaryNumber(input) {
     return /^[0-4]+$/.test(input);
 }
 
+function addQuinary(a, b) {
+    if (!isValidQuinaryNumber(a) || !isValidQuinaryNumber(b)) {
+        throw new Error('Invalid quinary input for addition');
+    }
+
+    const decimalA  = quinaryToDecimal(a);
+    const decimalB  = quinaryToDecimal(b);
+    const result = decimalA + decimalB;
+
+    return decimalToQuinary(result);
+}
+
+function subtractQuinary(a, b) {
+    if (!isValidQuinaryNumber(a) || !isValidQuinaryNumber(b)) {
+        throw new Error('Invalid quinary input for subtraction');
+    }
+
+    const decimalA  = quinaryToDecimal(a);
+    const decimalB  = quinaryToDecimal(b);
+    const result = decimalA - decimalB;
+
+    return decimalToQuinary(result);
+}
+
 function multiplyQuinary(a, b) {
     if (!isValidQuinaryNumber(a) || !isValidQuinaryNumber(b)) {
         throw new Error('Invalid quinary input for multiplication');
@@ -81,6 +105,8 @@ if (typeof window !== 'undefined') {
         quinaryToDecimal,
         decimalToQuinary,
         isValidQuinaryNumber,
+        addQuinary,
+        subtractQuinary,
         multiplyQuinary,
         divideQuinary,
         squareQuinary,
@@ -93,6 +119,8 @@ if (typeof module !== 'undefined' && module.exports) {
         quinaryToDecimal,
         decimalToQuinary,
         isValidQuinaryNumber,
+        addQuinary,
+        subtractQuinary,
         multiplyQuinary,
         divideQuinary,
         squareQuinary,
