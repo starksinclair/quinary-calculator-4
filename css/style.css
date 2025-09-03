@@ -1,0 +1,62 @@
+
+html, body{
+    background-color: rgb(168, 170, 0);
+}
+
+
+.Calc{
+    background-color: rgb(168, 170, 0);
+    padding-left: 2em;
+    padding-top: 1em;
+
+}
+
+
+.numButton{
+    background-color:blueviolet;
+    color:brown;
+}
+.numberButtz{
+    background-color:rgb(168, 170, 0);;
+
+}
+
+#clear-btn{
+    background-color: blueviolet;
+    color: brown;
+    caret-color: transparent;
+
+}
+
+
+#display{
+    color:rgb(0, 0, 0);
+}
+
+/*add some lacy edges to the displays to make em look cooler or like nicer, idk*/
+#QDisplay{
+    background-color: blueviolet;
+    color:white;
+}
+#DDisplay{
+    background-color: blueviolet;
+    color:white;
+}
+#toggleDisplay{
+    background-color: blueviolet;
+    color:brown;
+    caret-color: transparent;
+}
+
+
+
+
+
+#extraPadding{
+    padding-bottom: 2em;
+}
+
+
+#catPic{
+    opacity: 0;
+}
