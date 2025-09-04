@@ -6,11 +6,8 @@
     <title>Quinary Calc</title>
 </head>
 <body>
-
-    <script src="js/app.js"></script>
-
-
-    <div class = "Calc">
+    <script type="module" src="js/app.js"></script>
+    <div class="Calc">
 
         <!--Display-->
         <div id="display">
@@ -36,22 +33,26 @@
 
         <div class="operationButtons">
             <br>
-            <button class="opButton">+</button>
-            <button class="opButton">-</button>
-            <button class="opButton">/</button>
-            <button class="opButton">x</button>
+            <button class="opButton" data-op="+">+</button>
+            <button class="opButton" data-op="-">-</button>
+            <button class="opButton" data-op="*">&times;</button>
+            <button class="opButton" data-op="/">&divide;</button>
+            <button class="opButton" data-op="square">x²</button>
+            <button class="opButton" data-op="sqrt">&radic;x</button>
+
         </div><!--endOperationButtons-->
 
         <!--ClearButton-->
         <br>
-        <button id="clear-btn">Clear</button>
+      <div class="clearEqualsButtons">
+          <button id="equals-btn">=</button>
+          <button id="clear-btn">Clear</button>
+      </div>
 
     </div><!--endCalcClass-->
 
     <div class="imageArea">
-        <img id="catPic", src="/otherAssets/DoNOTDelete.jpg", alt="cat pic", width="500", height="500">
+        <img id="catPic" src="/otherAssets/DoNOTDelete.jpg" alt="cat pic" width="528" height="388">
     </div>
-
-
 </body>
 </html>

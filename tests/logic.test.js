@@ -1,7 +1,7 @@
 // Mocha Tests for Quinary Calculator Logic
 
-const assert = require('assert');
-const quinaryLogic = require('../js/logic.js');
+import assert from 'assert';
+import * as quinaryLogic from '../js/logic.js';
 
 describe('Quinary Calculator Logic Tests', function() {
   
