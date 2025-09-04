@@ -18,7 +18,11 @@ html, body{
 }
 .numberButtz{
     background-color:rgb(168, 170, 0);;
+}
 
+.opButton{
+    background-color: rgb(142, 104, 178);
+    color:brown;
 }
 
 #clear-btn{
