@@ -1,11 +1,20 @@
-
-
+import {
+    addQuinary,
+    divideQuinary,
+    hasOperator, isValidQuinaryNumber,
+    multiplyQuinary,
+    quinaryToDecimal, sqrtQuinary,
+    squareQuinary,
+    subtractQuinary
+} from "./logic.js";
 document.addEventListener("DOMContentLoaded", function() {
     const QuinaryDisplay = document.getElementById("Qdisplay");
     const Decimaldisplay = document.getElementById("Ddisplay");
     const numberButtons = document.querySelectorAll(".numButton");
+    const opButtons = document.querySelectorAll(".opButton");
     const toggleDisplayButton = document.getElementById("toggleDisplay");
     const clearBtn = document.getElementById("clear-btn");
+    const equalsBtn = document.getElementById("equals-btn");
 
     //can rid off
     const catPicture = document.getElementById("catPic");
@@ -13,66 +22,145 @@ document.addEventListener("DOMContentLoaded", function() {
     catPicture.style.opacity=0; //pre-game var
     let counterForSecret = 0;
     let trademarked=false;
+    // let firstValue = null;
+    let operator = null;
+
     //can rid off
-
-
-
-
     let currentInput = ""; //placeholder String
-    let showingQuinaryRN = true;
-    
-
+    let convertToDecimal = false;
 
     numberButtons.forEach(button => {
         button.addEventListener("click", () => {
             const value = button.textContent;
-            if(currentInput==="0"){
+            if (!isValidQuinaryNumber(value)) return
+            if(currentInput==="0" || currentInput==="Invalid"){
                 currentInput = value;
-            }else{
+                // firstValue = currentInput;
+                console.log(currentInput);
+            }else {
                 currentInput+=value;
+                console.log(currentInput);
             }
-            updateDisplay();
+            updateDisplay(false);
         });
+    });
+
+    opButtons.forEach(button => {
+        button.addEventListener("click", () => {
+           try {
+               const operation = button.dataset.op;
+               if (operation === 'square') {
+                   currentInput= squareQuinary(currentInput)
+               } else if (operation === 'sqrt') {
+                   currentInput = sqrtQuinary(currentInput)
+               }
+               else {
+                   if (!hasOperator(currentInput)) {
+                       currentInput += operation;
+                       operator = operation;
+                   }
+               }
+               updateDisplay(false);
+           } catch (error) {
+               console.error(error);
+               alert("Error: " + error.message);
+           }
+        });
+    });
+
+    equalsBtn.addEventListener("click", () => {
+        if (currentInput === "" || currentInput === "0") {
+            alert("Please enter a number first.");
+            return;
+        }
+        const value = currentInput.split(operator)
+        const firstValue = value[0];
+        const secondValue = value[1];
+        if (!hasOperator(currentInput)) {
+            alert("Please enter a operator before performing any calculation.");
+            return;
+        }
+        try {
+            switch (operator) {
+                case "+":
+                    currentInput = addQuinary(firstValue, secondValue);
+                    break;
+                case "-":
+                    currentInput = subtractQuinary(firstValue, secondValue);
+                    break;
+                case "*":
+                    currentInput = multiplyQuinary(firstValue, secondValue);
+                    break;
+                case "/":
+                    if (quinaryToDecimal(secondValue) === 0) {
+                        currentInput = "0";
+                        alert("Division by zero is not allowed.");
+                    } else {
+                        currentInput = divideQuinary(firstValue, secondValue);
+                    }
+                    break;
+                default:
+                    currentInput = "0";
+                    alert("Invalid operation or input.");
+                    break;
+            }
+        } catch (error) {
+            alert("Error: " + error.message);
+            currentInput = "0";
+        }
+        updateDisplay(false);
     });
 
     //toggleDisplayHangle
     toggleDisplayButton.addEventListener("click", () =>{
-        showingQuinaryRN = !showingQuinaryRN;
-        updateDisplay();
-
-
-
+        convertToDecimal = !convertToDecimal;
+        console.log(convertToDecimal, "toggled");
+        updateDisplay(convertToDecimal);
         //can rid off
         counterForSecret+=1;
         updateCatPicture();//GET RID OF
         //can rid off
     });
 
-
-
     //clearHandle
     clearBtn.addEventListener("click", ()=>{
         currentInput="0";
-
         //can rid off
         counterForSecret=0;
         catPicture.style.opacity="0";
         //can rid off
-        updateDisplay();
+        updateDisplay(false);
     });
 
-    function updateDisplay(){
-        const decimalValue = parseInt(currentInput || "0", 5); //So... might need to get rid of this, dicuss in class, automatically breaks the base 5 number, into base 10
-        QuinaryDisplay.textContent = "Quinary: "+currentInput;
-        Decimaldisplay.textContent = "Decimal: "+(isNaN(decimalValue) ? "Invalid" : decimalValue);
+    function updateDisplay(convertToDecimal = false) {
+        if (!currentInput) currentInput = "0";
+        let displayValue = currentInput;
+        let decimalValue;
 
-        //if QDisplay is on than display QDisplay, hide DDisplay; reverse is true
-        QuinaryDisplay.style.display = showingQuinaryRN ? "block" : "none";
-        Decimaldisplay.style.display = showingQuinaryRN ? "none" : "block";
+        if (operator && hasOperator(currentInput)) {
+            const [firstPart, secondPart] = displayValue.split(operator);
+            let value = "";
+            if (firstPart) {
+                value += quinaryToDecimal(firstPart);
+            }
+            if (secondPart) {
+                value += operator + quinaryToDecimal(secondPart);
+            }
+            decimalValue = value;
+        } else {
+            decimalValue = quinaryToDecimal(displayValue);
+        }
+
+        if (convertToDecimal) {
+            QuinaryDisplay.style.display = "none";
+            Decimaldisplay.style.display = "block";
+            Decimaldisplay.textContent = "Decimal: " + decimalValue;
+        } else {
+            QuinaryDisplay.style.display = "block";
+            Decimaldisplay.style.display = "none";
+            QuinaryDisplay.textContent = "Quinary: " + displayValue;
+        }
     }
-
-
-
 
     function updateCatPicture(){
         if(counterForSecret>=20){
@@ -89,12 +177,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 }
 
-
-
-
-
-
     //init
     currentInput = "0";
-    updateDisplay();
+    updateDisplay(false);
 })//end of DOM loading

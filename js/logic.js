@@ -1,10 +1,27 @@
 // Quinary Calculator - Advanced Arithmetic Logic
-
+export {
+    quinaryToDecimal,
+    decimalToQuinary,
+    isValidQuinaryNumber,
+    addQuinary,
+    subtractQuinary,
+    multiplyQuinary,
+    divideQuinary,
+    squareQuinary,
+    sqrtQuinary,
+    hasOperator
+};
 function quinaryToDecimal(quinaryString) {
+    // quinaryString = quinaryString.s;
     if (!isValidQuinaryNumber(quinaryString)) {
-        throw new Error('Invalid quinary number: only digits 0-4 allowed');
+        throw new Error('Invalid quinary number');
     }
     return parseInt(quinaryString, 5);
+}
+
+function hasOperator(input) {
+    if (!input || typeof input !== 'string') return false;
+    return ["+", "-", "*", "/"].some(op => input.includes(op));
 }
 
 function decimalToQuinary(decimalNumber) {
@@ -98,32 +115,4 @@ function sqrtQuinary(a) {
     
     const result = Math.floor(Math.sqrt(decimalA));
     return decimalToQuinary(result);
-}
-
-if (typeof window !== 'undefined') {
-    window.quinaryLogic = {
-        quinaryToDecimal,
-        decimalToQuinary,
-        isValidQuinaryNumber,
-        addQuinary,
-        subtractQuinary,
-        multiplyQuinary,
-        divideQuinary,
-        squareQuinary,
-        sqrtQuinary
-    };
-}
-
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = {
-        quinaryToDecimal,
-        decimalToQuinary,
-        isValidQuinaryNumber,
-        addQuinary,
-        subtractQuinary,
-        multiplyQuinary,
-        divideQuinary,
-        squareQuinary,
-        sqrtQuinary
-    };
 }
