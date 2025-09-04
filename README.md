@@ -64,7 +64,9 @@ A calculator that operates in base-5 (quinary) with support for addition, subtra
 |-----------|-----------------------------|--------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------|
 | Sinclair  | Connecting and Documentation| Set up the project, connect the UI with the logic, update the README.md and take meeting notes. | Feature/connection                                                                                |
 | Ethan     | UI Developer 1              | Implement calculator number buttons (0-4) and basic display. Implement button styling. | Feature/UI-Dev1-EthanBuckner (Number button UI and display field)                                 |
-| Jayden    | Logic Developer 1           | Implement quinary-decimal conversion logic. Implement addition and subtraction logic. Write unit tests for these operations. | Feature/quinary-arithmetic-logic-jayden (Addition and Subtraction logic and tests)                |
+| Jayden    | Logic Developer 1           | Implement quinary-decimal conversion logic. Implement addition and subtraction logic. Write unit tests for these operations. | Feature/quinary-arithmetic-logic-jayden
+feature/add-subtract-logic (Addition and Subtraction logic and tests)                |
 | Lleyton   | UI Developer 2              | Implement operation buttons (+, -, *, /, =, square, square root, toggle). Implement toggle display functionality. | Feature/OperationButtonsAndToggle (Operation button UI and toggle display)                        |
 | Shristi   | Logic Developer 2           | Implement multiplication and division logic. Implement square and square root logic. Write unit tests for these operations. | Feature/advanced-arithmetic-logic (Multiplication, Division, Square, Square Root logic and tests) |
+
 
